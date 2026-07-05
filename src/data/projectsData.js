@@ -7,9 +7,14 @@ const projectsData = [
     description:
       '面向辅助驾驶与智能座舱场景，参与车载道路图片的标签挂载、Caption 构建、质量复核及自动化流程搭建。',
     metrics: [
-      { value: '800—1000 条', label: '个人处理样本' },
+      { value: '3000 条', label: '核心样本处理' },
       { value: '80+ 条', label: '典型 Badcase' },
     ],
+    outcome: {
+      title: '标签自动化与人效提升',
+      description:
+        '自动化上线后，结构化标签由人工逐项挂载转为系统自动生成，原 6 名标注人员仅需完成 Caption 改写，减少约 2—3 人等效标签挂载人力，支撑约 5 万条车载数据批量交付。',
+    },
     tags: ['车载场景', '图像理解', 'Caption', '数据构建'],
     accent: 'orange',
     visual: 'vehicle',
@@ -27,6 +32,11 @@ const projectsData = [
       { value: '约 300 条', label: '评测集样本质检' },
       { value: '持续沉淀', label: '典型 Badcase 与模型适用建议' },
     ],
+    outcome: {
+      title: '人员管理与试标 SOP',
+      description:
+        '协助完成新人入项试标、规则培训、数据统计样板搭建及答疑文档整理，拉齐规则理解一致性；通过准确率看板和专项复盘跟踪人员表现，推动新人爬坡周期由约 4 天缩短至 2 天，试标准确率由约 88% 提升至 95% 以上，个人质检准确率稳定在 97% 左右，协助团队稳定推进数据交付。',
+    },
     tags: ['图生视频', '电商广告', '模型评测', '质量控制'],
     accent: 'blue',
     visual: 'video',

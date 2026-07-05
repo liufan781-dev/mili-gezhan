@@ -766,6 +766,7 @@ a { color: inherit; text-decoration: none; }
 }
 .project-component {
   --project-accent: var(--orange);
+  position: relative;
   min-width: 0;
   min-height: 525px;
   padding: 11px;
@@ -789,6 +790,16 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid #ecebf1;
   border-radius: 28px;
   background: #fff;
+}
+.project-component-hit {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  border-radius: inherit;
+}
+.project-component-hit:focus-visible {
+  outline: 3px solid var(--project-accent);
+  outline-offset: 4px;
 }
 .project-component-header {
   position: relative;
@@ -871,6 +882,48 @@ a { color: inherit; text-decoration: none; }
   color: #777;
   font-size: 10px;
   line-height: 1.45;
+}
+.project-outcome {
+  position: relative;
+  z-index: 6;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--project-accent) 36%, white);
+  border-left: 4px solid var(--project-accent);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--project-accent) 6%, white);
+}
+.project-outcome strong {
+  display: block;
+  color: var(--project-accent);
+  font-size: 12px;
+  line-height: 1.35;
+}
+.project-outcome p {
+  display: -webkit-box;
+  margin: 8px 0 0;
+  overflow: hidden;
+  color: #5f5f65;
+  font-size: 11px;
+  line-height: 1.65;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+.project-outcome.is-expanded p {
+  display: block;
+  overflow: visible;
+}
+.project-outcome button {
+  margin-top: 9px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: var(--project-accent);
+  cursor: pointer;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 800;
 }
 .project-tags {
   display: flex;

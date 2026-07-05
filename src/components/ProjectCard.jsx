@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 function VehicleVisual() {
   return (
     <div className="project-css-visual vehicle-visual" aria-hidden="true">
@@ -38,12 +40,14 @@ function VideoVisual() {
 }
 
 export default function ProjectCard({ project, index = 0 }) {
+  const [outcomeExpanded, setOutcomeExpanded] = useState(false)
+
   return (
     <article
       className={`project-component ${project.accent} reveal`}
       style={{ '--reveal-delay': `${index * 90}ms` }}
     >
-      <a className="project-component-link" href={`/projects/${project.slug}`}>
+      <div className="project-component-link">
         <header className="project-component-header">
           <span>{project.id}</span>
           <b aria-hidden="true">↗</b>
@@ -61,13 +65,29 @@ export default function ProjectCard({ project, index = 0 }) {
                 </div>
               ))}
             </div>
+            <div className={`project-outcome ${outcomeExpanded ? 'is-expanded' : ''}`}>
+              <strong>{project.outcome.title}</strong>
+              <p>{project.outcome.description}</p>
+              <button
+                type="button"
+                aria-expanded={outcomeExpanded}
+                onClick={() => setOutcomeExpanded(current => !current)}
+              >
+                {outcomeExpanded ? '收起' : '展开查看'}
+              </button>
+            </div>
             <div className="project-tags">
               {project.tags.map(tag => <span key={tag}>{tag}</span>)}
             </div>
           </div>
           {project.visual === 'vehicle' ? <VehicleVisual /> : <VideoVisual />}
         </div>
-      </a>
+      </div>
+      <a
+        className="project-component-hit"
+        href={`/projects/${project.slug}`}
+        aria-label={`查看项目详情：${project.title}`}
+      />
     </article>
   )
 }

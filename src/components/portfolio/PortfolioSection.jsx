@@ -17,7 +17,7 @@ export default function PortfolioSection() {
   }
 
   return (
-    <section className="portfolio-section" id="portfolio">
+    <section className="portfolio-section" id="edge-x">
       <div className="portfolio-shell">
         <FeaturedWorkHero
           work={portfolioData.featured}

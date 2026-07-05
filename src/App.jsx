@@ -8,21 +8,34 @@ import heroShapes from './data/heroShapesData'
 import useMouseRepel from './hooks/useMouseRepel'
 import useSiteMotion from './hooks/useSiteMotion'
 import StrengthsSection from './components/strengths/StrengthsSection'
+import VisualStudies from './components/VisualStudies'
 
 function Header() {
   const sections = [
     ['首页', 'home'],
+    ['作品集', 'portfolio'],
+    ['项目经历', 'projects'],
     ['关于我', 'about'],
     ['个人优势', 'strengths'],
-    ['项目经历', 'projects'],
-    ['作品集', 'portfolio'],
     ['联系我', 'contact'],
   ]
   const validIds = sections.map(([, id]) => id)
-  const initialHash = window.location.hash.replace('#', '')
+  const rawHash = window.location.hash.replace('#', '')
+  const initialHash = ['visual-studies', 'edge-x'].includes(rawHash) ? 'portfolio' : rawHash
   const [activeSection, setActiveSection] = useState(
     validIds.includes(initialHash) ? initialHash : 'home',
   )
+
+  const handleNavClick = (event, id) => {
+    event.preventDefault()
+    setActiveSection(id)
+    window.history.pushState(null, '', `#${id}`)
+    const target = document.getElementById(id)
+    if (!target) return
+    const navOffset = 108
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - navOffset
+    window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' })
+  }
 
   useEffect(() => {
     const nodes = validIds
@@ -71,7 +84,7 @@ function Header() {
             href={`#${id}`}
             key={id}
             aria-current={activeSection === id ? 'page' : undefined}
-            onClick={() => setActiveSection(id)}
+            onClick={event => handleNavClick(event, id)}
           >
             {label}
           </a>
@@ -348,5 +361,17 @@ export default function App() {
     return <ProjectDetail slug={projectSlug} />
   }
 
-  return <main><Hero /><About /><StrengthsSection /><ProjectsSection /><PortfolioSection /><Contact /></main>
+  return (
+    <main>
+      <Hero />
+      <div className="portfolio-group" id="portfolio">
+        <VisualStudies />
+        <PortfolioSection />
+      </div>
+      <ProjectsSection />
+      <About />
+      <StrengthsSection />
+      <Contact />
+    </main>
+  )
 }

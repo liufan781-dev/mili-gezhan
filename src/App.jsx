@@ -321,8 +321,11 @@ function Contact() {
               <a className="contact-action primary" href={`mailto:${email}`}>
                 发送邮件 <b>↗</b>
               </a>
-              {/* TODO: 收到正式简历后，将下方链接替换为真实 PDF 文件。 */}
-              <a className="contact-action secondary" href="/resume-placeholder.txt" download>
+              <a
+                className="contact-action secondary"
+                href="/resume/于庆-AI训练师-个人简历.pdf"
+                download="于庆-AI训练师-个人简历.pdf"
+              >
                 下载简历 <b>↓</b>
               </a>
             </div>

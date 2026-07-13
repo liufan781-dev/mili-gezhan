@@ -34,9 +34,39 @@ function VideoVisual() {
         </div>
         <div className="video-timeline"><span /></div>
       </div>
-      <span className="score-chip">4.6 / 5</span>
+      <span className="score-chip">I2V</span>
     </div>
   )
+}
+
+function AestheticVisual() {
+  return (
+    <div className="project-css-visual aesthetic-visual" aria-hidden="true">
+      <i className="visual-circle circle-one" />
+      <i className="visual-circle circle-two" />
+      <i className="visual-circle circle-three" />
+      <div className="composition-frame">
+        <i className="grid-line vertical-one" />
+        <i className="grid-line vertical-two" />
+        <i className="grid-line horizontal-one" />
+        <i className="grid-line horizontal-two" />
+        <span className="focus-point" />
+        <span className="lens-mark" />
+        <b className="color-chip chip-a" />
+        <b className="color-chip chip-b" />
+        <b className="color-chip chip-c" />
+      </div>
+      <span className="annotation annotation-a">构图</span>
+      <span className="annotation annotation-b">光影</span>
+      <span className="annotation annotation-c">色彩</span>
+    </div>
+  )
+}
+
+function ProjectVisual({ type }) {
+  if (type === 'video') return <VideoVisual />
+  if (type === 'aesthetic') return <AestheticVisual />
+  return <VehicleVisual />
 }
 
 export default function ProjectCard({ project, index = 0 }) {
@@ -80,7 +110,7 @@ export default function ProjectCard({ project, index = 0 }) {
               {project.tags.map(tag => <span key={tag}>{tag}</span>)}
             </div>
           </div>
-          {project.visual === 'vehicle' ? <VehicleVisual /> : <VideoVisual />}
+          <ProjectVisual type={project.visual} />
         </div>
       </div>
       <a
